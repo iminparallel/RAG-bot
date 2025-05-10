@@ -4,6 +4,8 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import Header from "@/Components/Header";
 import Footer from "@/Components/Footer";
+import { Toaster } from "@/Components/ui/sonner";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -28,11 +30,12 @@ export default function RootLayout({
     <html lang="en">
       <ClerkProvider>
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          className={`flex flex-col min-h-screen ${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-          <Header />
-          {children}
-          <Footer />
+          <Header /> {/* Example fixed header height */}
+          <main className="flex-grow overflow-auto">{children}</main>
+          <Footer /> {/* Example fixed footer height */}
+          <Toaster />
         </body>
       </ClerkProvider>
     </html>
