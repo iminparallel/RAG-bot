@@ -26,6 +26,8 @@ A Retrieval-Augmented Generation (RAG) chatbot:
 3. Provides a UI: Offers a simple, user-friendly web interface using React.js where users can upload PDFs, enter questions, and view answers, and the sources of the anser (document name and page number).
 4. Is deployed and shareable: Hosted at a public URL, this is the source code
    GitHub repository.
+5. Has authentication, so each user can have their own RAG bot, You need to be logged in to access the RAG bot from home page.
+6. Each user has a Vectorstore namespace dedicated to them.
 
 ## How to run this project locally?
 
