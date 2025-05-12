@@ -38,7 +38,10 @@ export async function POST(request: NextRequest) {
     // If Namespace is non existant throw error
     if (!namespaceList.includes(namespace)) {
       return NextResponse.json(
-        { content: "This Namespace has not been created." },
+        {
+          content:
+            "This Namespace has not been created. Please upload a document first.",
+        },
         {
           status: 404,
         }
@@ -63,7 +66,7 @@ export async function POST(request: NextRequest) {
     // Query the vector store and LLM
     const response = await queryUpstashAndLLM(index, namespace, question);
     const result = response[0]; // LLM's answer
-    const sources = response[1]; // Source Data
+    let sources = response[1]; // Source Data
 
     // Format the response
     let responseContent = "";
@@ -71,6 +74,10 @@ export async function POST(request: NextRequest) {
       responseContent = result.content;
     } else {
       responseContent = result as string;
+    }
+
+    if (!sources.length) {
+      sources = ["No Sources"];
     }
 
     // Save the assistant's message to Redis

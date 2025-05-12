@@ -29,8 +29,8 @@ export default async function Home() {
             🚀 Enter the RAG Bot
           </Link>
         ) : (
-          <p className="text-gray-400 animate-fade-in delay-300">
-            🔒 Please sign in to use the service
+          <p className="text-gray-400 text-2xl animate-fade-in delay-300 ">
+            🔒 Please sign in to use the RAG service
           </p>
         )}
       </main>

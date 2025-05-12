@@ -14,6 +14,7 @@ import { Card, CardContent } from "@/Components/ui/card";
 import { motion } from "framer-motion";
 import { MarkdownRenderer } from "@/Components/MarkDown";
 import { toast } from "sonner";
+import Image from "next/image";
 
 // RAG chat message type definition
 type Message = {
@@ -166,6 +167,32 @@ const Chat = ({ userId }: { userId: string }) => {
         <Card className="flex flex-col bg-gray-900 text-white border-none h-full">
           {/* Renders Messages both user's and assistant's */}
           <CardContent className="flex-1 overflow-y-auto custom-scrollbar p-2 space-y-1">
+            <>
+              <div className="max-w-xl px-4 py-2 rounded-lg text-sm whitespace-pre-wrap bg-gray-400 text-gray-800 self-start mr-auto">
+                <MarkdownRenderer
+                  text={`Use the tooltip icon beside the input to upload a document.`}
+                />
+
+                <Image
+                  src="/tooltip.png"
+                  alt="Tooltip Image"
+                  width={50}
+                  height={50}
+                  className="rounded-lg shadow-md"
+                />
+              </div>
+              <div className="max-w-xl px-4 py-2 rounded-lg text-sm whitespace-pre-wrap bg-gray-400 text-gray-800 self-start mr-auto">
+                <MarkdownRenderer
+                  text={`You will see a pop up if the upload fails or succeds.`}
+                />
+              </div>
+              <div className="max-w-xl px-4 py-2 rounded-lg text-sm whitespace-pre-wrap bg-gray-400 text-gray-800 self-start mr-auto">
+                <MarkdownRenderer
+                  text={`If the upload is succesful start asking questions!`}
+                />
+              </div>
+            </>
+
             {messages.map(({ content, role, sources }, idx) => (
               <div
                 key={idx}
@@ -192,7 +219,9 @@ const Chat = ({ userId }: { userId: string }) => {
             <div ref={messagesEndRef} className="h-4" />
             {/* Loading state when assistant is responding */}
             {status === "loading" && (
-              <motion.div className="w-5 h-5 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin mx-auto" />
+              <div>
+                <motion.div className="w-5 h-5 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin mx-auto" />
+              </div>
             )}
           </CardContent>
 
