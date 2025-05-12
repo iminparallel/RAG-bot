@@ -1,6 +1,19 @@
 ## evo11ve-take-home
 
+## Deliverables
+
+1. GitHub Repository ✔️
+   ○ All source code. ✔️
+   ○ A clear folder structure and README. ✔️
+2. README ✔️
+   ○ Step-by-step guide to run locally. ✔️
+   ○ Link to deployed app ✔️
+3. Bonus (Optional) ✔️
+   ○ Highlighting of source text in UI. ✔️
+
 ## Live Location
+
+https://evo11ve-takehome.vercel.app/
 
 ## Description
 
@@ -51,7 +64,7 @@ GROQ_API_KEY=
 
 ## Deployment
 
-This project has been deployed using Vercel and Git pipeline for CI/CD
+This project has been deployed using Vercel and Git pipeline for CI/CD and compleatly serverless
 
 ## Guide to populate .env file
 
@@ -105,17 +118,17 @@ This project has been deployed using Vercel and Git pipeline for CI/CD
 | | layout.tsx
 | | page.tsx
 | |
- | +---api
+| +---api
 | | +---chat
 | | | | route.ts
 | | | |
- | | | \---history
+| | | \---history
 | | | route.ts
 | | |
- | | \---upsert
+| | \---upsert
 | | route.ts
 | |
- | \---Chat
+| \---Chat
 | \---[userId]
 | page.tsx
 |
@@ -125,7 +138,7 @@ This project has been deployed using Vercel and Git pipeline for CI/CD
 | | Header.tsx
 | | MarkDown.tsx
 | |
- | \---ui
+| \---ui
 | button.tsx
 | card.tsx
 | input.tsx

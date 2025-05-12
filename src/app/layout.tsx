@@ -29,7 +29,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <ClerkProvider>
-        {" "}
         {/* Clerk Authentication Provider */}
         <body
           className={`flex flex-col min-h-screen ${geistSans.variable} ${geistMono.variable} antialiased`}
@@ -39,7 +38,7 @@ export default function RootLayout({
           <Footer /> {/* Footer Component */}
           <Toaster /> {/* Shadcn Sonner toaster for pop-up notifications */}
         </body>
-      </ClerkProvider>{" "}
+      </ClerkProvider>
       {/* Clerk Authentication Provider */}
     </html>
   );

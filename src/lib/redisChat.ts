@@ -15,40 +15,6 @@ const redis = new Redis({
 });
 
 /**
- * Get chat history for a user from Redis
- * @param userId - The user's ID
- * @param limit - Maximum number of messages to retrieve (default: 100)
- */
-export async function getChatHistory(
-  userId: string,
-  limit = 100
-): Promise<Message[]> {
-  try {
-    const chatHistoryKey = `chat:history:${userId}`;
-
-    // Get messages from Redis (stored as a list)
-    // LRANGE returns messages from newest to oldest when we insert with LPUSH
-    const rawMessages = await redis.lrange(chatHistoryKey, 0, limit - 1);
-
-    // Parse and reverse to get chronological order (oldest first)
-    return rawMessages
-      .map((msg) => {
-        try {
-          return JSON.parse(msg);
-        } catch (e) {
-          console.error("Failed to parse message:", e);
-          return null;
-        }
-      })
-      .filter(Boolean)
-      .reverse();
-  } catch (error) {
-    console.error("Failed to get chat history from Redis:", error);
-    return [];
-  }
-}
-
-/**
  * Save a message to the user's chat history in Redis: Not required in current scope
  * @param userId - The user's ID
  * @param message - The message to save
@@ -80,21 +46,6 @@ export async function saveMessage(
     return true;
   } catch (error) {
     console.error("Failed to save message to Redis:", error);
-    return false;
-  }
-}
-
-/**
- * Clear chat history for a user: Not required in current scope
- * @param userId - The user's ID
- */
-export async function clearChatHistory(userId: string): Promise<boolean> {
-  try {
-    const chatHistoryKey = `chat:history:${userId}`;
-    await redis.del(chatHistoryKey);
-    return true;
-  } catch (error) {
-    console.error("Failed to clear chat history from Redis:", error);
     return false;
   }
 }

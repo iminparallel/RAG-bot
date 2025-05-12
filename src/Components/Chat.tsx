@@ -132,7 +132,7 @@ const Chat = ({ userId }: { userId: string }) => {
       const botMessage: Message = {
         role: "assistant",
         content: data?.content || "No response received",
-        sources: data?.sources || [],
+        sources: data?.sources || ["No Sources"],
       };
 
       setMessages((prev) => [...prev, botMessage]);
