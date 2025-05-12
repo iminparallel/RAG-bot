@@ -75,6 +75,7 @@ This project has been deployed using Vercel and Git pipeline for CI/CD
 
 ## File Tree
 
+```
 | .env
 | .env.example
 | .gitignore
@@ -87,50 +88,50 @@ This project has been deployed using Vercel and Git pipeline for CI/CD
 | tree.txt
 | tsconfig.json
 | yarn.lock
-|  
+|
 +---public
 | file.svg
 | globe.svg
 | next.svg
 | vercel.svg
 | window.svg
-|  
+|
 \---src
 | middleware.ts
-|  
+|
  +---app
 | | favicon.ico
 | | globals.css
 | | layout.tsx
 | | page.tsx
-| |  
+| |
  | +---api
 | | +---chat
 | | | | route.ts
-| | | |  
+| | | |
  | | | \---history
 | | | route.ts
-| | |  
+| | |
  | | \---upsert
 | | route.ts
-| |  
+| |
  | \---Chat
 | \---[userId]
 | page.tsx
-|  
+|
  +---Components
 | | Chat.tsx
 | | Footer.tsx
 | | Header.tsx
 | | MarkDown.tsx
-| |  
+| |
  | \---ui
 | button.tsx
 | card.tsx
 | input.tsx
 | sonner.tsx
 | tooltip.tsx
-|  
+|
  \---lib
 qaChain.ts
 rag.server.ts
@@ -138,3 +139,4 @@ redisChat.ts
 upstash.ts
 user.server.ts
 utils.ts
+```
