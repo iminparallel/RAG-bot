@@ -1,5 +1,7 @@
 ## evo11ve-take-home
 
+## Live Location
+
 ## Description
 
 A Retrieval-Augmented Generation (RAG) chatbot:
@@ -47,6 +49,10 @@ GROQ_API_KEY=
 
 9. You will see the port it is launching on on the terminal, and visit the address (if port 3000 is free it will be launched there)
 
+## Deployment
+
+This project has been deployed using Vercel and Git pipeline for CI/CD
+
 ## Guide to populate .env file
 
 1. NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
@@ -66,3 +72,69 @@ GROQ_API_KEY=
    `Allow read and write access to repositories and inference.`
 8. GROQ_API_KEY
    Go to https://console.groq.com/keys to generate the GROQ_API_KEY
+
+## File Tree
+
+| .env
+| .env.example
+| .gitignore
+| components.json
+| next-env.d.ts
+| next.config.ts
+| package.json
+| postcss.config.mjs
+| README.md
+| tree.txt
+| tsconfig.json
+| yarn.lock
+|  
++---public
+| file.svg
+| globe.svg
+| next.svg
+| vercel.svg
+| window.svg
+|  
+\---src
+| middleware.ts
+|  
+ +---app
+| | favicon.ico
+| | globals.css
+| | layout.tsx
+| | page.tsx
+| |  
+ | +---api
+| | +---chat
+| | | | route.ts
+| | | |  
+ | | | \---history
+| | | route.ts
+| | |  
+ | | \---upsert
+| | route.ts
+| |  
+ | \---Chat
+| \---[userId]
+| page.tsx
+|  
+ +---Components
+| | Chat.tsx
+| | Footer.tsx
+| | Header.tsx
+| | MarkDown.tsx
+| |  
+ | \---ui
+| button.tsx
+| card.tsx
+| input.tsx
+| sonner.tsx
+| tooltip.tsx
+|  
+ \---lib
+qaChain.ts
+rag.server.ts
+redisChat.ts
+upstash.ts
+user.server.ts
+utils.ts
