@@ -153,3 +153,17 @@ upstash.ts
 user.server.ts
 utils.ts
 ```
+
+## Tech Stack
+
+- Next.js 15
+- Node.js 22
+- TypeScript
+- React
+- Clerk Auth
+- Langchain
+- Groq
+- Upstash Redis
+- Upstash Vectorstore
+- Huggingface Inference
+- Shadcn
