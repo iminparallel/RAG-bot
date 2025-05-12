@@ -1,4 +1,4 @@
-// File: lib/user.server.ts
+// Returns session id and namespace unique to each user
 
 import { currentUser } from "@clerk/nextjs/server";
 

@@ -29,15 +29,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <ClerkProvider>
+        {" "}
+        {/* Clerk Authentication Provider */}
         <body
           className={`flex flex-col min-h-screen ${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-          <Header /> {/* Example fixed header height */}
+          <Header /> {/* Header Component */}
           <main className="flex-grow overflow-auto">{children}</main>
-          <Footer /> {/* Example fixed footer height */}
-          <Toaster />
+          <Footer /> {/* Footer Component */}
+          <Toaster /> {/* Shadcn Sonner toaster for pop-up notifications */}
         </body>
-      </ClerkProvider>
+      </ClerkProvider>{" "}
+      {/* Clerk Authentication Provider */}
     </html>
   );
 }

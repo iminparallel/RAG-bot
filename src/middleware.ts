@@ -1,4 +1,4 @@
-// File: middleware.ts
+// Route matcher
 
 import { clerkMiddleware } from "@clerk/nextjs/server";
 

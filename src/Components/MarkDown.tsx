@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { marked } from "marked";
 import DOMPurify from "isomorphic-dompurify";
-
+// Type definition of markdown option
 interface MarkedOptions {
   gfm: boolean;
   breaks: boolean;
@@ -10,6 +10,9 @@ interface MarkedOptions {
   highlight?: (code: string, lang: string) => string;
 }
 
+/**
+ * Markdown component for proper formatting of chat messages
+ */
 const MarkdownRenderer = ({ text }: { text: string }) => {
   const [html, setHtml] = useState("");
 
@@ -25,9 +28,9 @@ const MarkdownRenderer = ({ text }: { text: string }) => {
 
   useEffect(() => {
     const parseMarkdown = async () => {
-      let cleanText = text.trim(); //.replace(/;+\s*$/, "");
+      let cleanText = text.trim();
       let parsed = await marked.parse(cleanText);
-      setHtml(parsed.trim() /*.replace(/;+\s*$/, "")*/);
+      setHtml(parsed.trim());
     };
     parseMarkdown();
   }, [text]);

@@ -3,53 +3,94 @@ export const dynamic = "force-dynamic";
 export const fetchCache = "force-no-store";
 export const maxDuration = 60;
 
-import type { Message } from "ai";
 import { Index } from "@upstash/vector";
-import { aiUseChatAdapter } from "@upstash/rag-chat/nextjs";
 import getUserSession from "@/lib/user.server";
 import { queryUpstashAndLLM } from "@/lib/upstash";
 import { NextRequest, NextResponse } from "next/server";
+import { saveMessage } from "@/lib/redisChat"; // Import our Redis utility
 
-interface ChatRequest {
-  upload: string;
-  sessionId: string;
-  namespace: string;
-  messages: Message[];
-}
-
+// Initialize Upstash Vectorstore client
 const index = new Index({
-  url: process.env.UPSTASH_VECTOR_REST_URL,
-  token: process.env.UPSTASH_VECTOR_REST_TOKEN,
+  url: process.env.UPSTASH_VECTOR_REST_URL!,
+  token: process.env.UPSTASH_VECTOR_REST_TOKEN!,
 });
 
+/**
+ * API endpoint to get chat completion from langchain
+ */
+
 export async function POST(request: NextRequest) {
-  const user = await getUserSession();
-  const namespaceList = await new Index().listNamespaces();
-  const { messages } = (await request.json()) as ChatRequest;
-  const question: string | undefined = messages.at(-1)?.content;
-  const sessionId = user?.[0] as string;
-  const namespace = user?.[1] as string;
-  if (!user) return new Response(null, { status: 403 });
-
-  if (!question)
-    return new Response("No question in the request.", { status: 401 });
-  if (!namespaceList.includes(namespace)) {
-    return NextResponse.json("This Namespace has not been created.", {
-      status: 404,
-    });
-  }
-
-  let response: any;
   try {
-    response = await queryUpstashAndLLM(index, namespace, sessionId, question);
-  } catch {
+    // Get the user session first
+    const user = await getUserSession();
+    if (!user) return new Response(null, { status: 403 });
+    const sessionId = user[0]; //SessionId for Redis Cache
+    const namespace = user[1]; //Namespece for Vector Store
+
+    // Parse the request body only once
+    const requestBody = await request.json();
+    // Gets user prompt
+    const question = requestBody.user_prompt;
+
+    // Check if namespace exists
+    const namespaceList = await index.listNamespaces();
+
+    // If Namespace is non existant throw error
+    if (!namespaceList.includes(namespace)) {
+      return NextResponse.json(
+        { content: "This Namespace has not been created." },
+        {
+          status: 404,
+        }
+      );
+    }
+
+    // If question is non existent throw error
+    if (!question) {
+      return NextResponse.json(
+        { content: "No question provided in request." },
+        { status: 400 }
+      );
+    }
+
+    // Save the user's message to Redis
+    await saveMessage(sessionId, {
+      role: "user",
+      content: question,
+      sources: [],
+    });
+
+    // Query the vector store and LLM
+    const response = await queryUpstashAndLLM(index, namespace, question);
+    const result = response[0]; // LLM's answer
+    const sources = response[1]; // Source Data
+
+    // Format the response
+    let responseContent = "";
+    if (typeof result === "object" && result?.content) {
+      responseContent = result.content;
+    } else {
+      responseContent = result as string;
+    }
+
+    // Save the assistant's message to Redis
+    await saveMessage(sessionId, {
+      role: "assistant",
+      content: responseContent,
+      sources: sources,
+    });
+
+    // Return the result properly formatted for the frontend
     return NextResponse.json(
-      "Unable to get response from model, contact the developer team.",
-      {
-        status: 401,
-      }
+      { content: responseContent, sources: sources },
+      { status: 200 }
+    );
+  } catch (err) {
+    // If the chat completions fails throws error
+    console.error("Error during chat processing:", err);
+    return NextResponse.json(
+      { content: "Failed to generate answer. Contact the developer team." },
+      { status: 500 }
     );
   }
-
-  return aiUseChatAdapter(response /*, "sources"*/);
 }

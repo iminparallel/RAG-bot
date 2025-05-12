@@ -1,7 +1,12 @@
 import { currentUser } from "@clerk/nextjs/server";
 import Link from "next/link";
 
+/**
+ * Root route and Landing page
+ */
+
 export default async function Home() {
+  // Gets current user data
   const user = await currentUser();
 
   return (
@@ -15,13 +20,13 @@ export default async function Home() {
           An AI-powered Retrieval-Augmented Generation app to help you find and
           generate insights fast.
         </p>
-
+        {/* If user is not logged in disables the RAG chat */}
         {user?.id ? (
           <Link
             href={`/Chat/${user.id}`}
             className="inline-block bg-white text-gray-900 px-6 py-3 rounded-lg text-lg font-semibold shadow-md hover:bg-gray-200 transition animate-fade-in delay-300"
           >
-            🚀 Enter the RAG
+            🚀 Enter the RAG Bot
           </Link>
         ) : (
           <p className="text-gray-400 animate-fade-in delay-300">
