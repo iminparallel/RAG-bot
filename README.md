@@ -80,7 +80,7 @@ This project has been deployed using Vercel and Git pipeline for CI/CD and compl
 6. UPSTASH_VECTOR_REST_TOKEN <br/>
    Go to https://console.upstash.com/ and log in, <br/>
    i. create a Redis database and copy the UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN <br/>
-   ii. create a Vector database and copy the UPSTASH_VECTOR_REST_URL and UPSTASH_VECTOR_REST_TOKEN, select 768 bge-base-en-v1.5 as the vector embedding standard
+   ii. create a Vector database and copy the UPSTASH_VECTOR_REST_URL and UPSTASH_VECTOR_REST_TOKEN, select `768 bge-base-en-v1.5` as the vector embedding standard
 7. HUGGINGFACEHUB_API_KEY <br/>
    Create a Hugging Face Account: visit the Hugging Face website and sign up for an account. Log In: Once you have an account, log in to Hugging Face. Then visit https://huggingface.co/settings/tokens
    Navigate to Your Profile Settings: Click on your profile icon in the upper right corner and select "Settings". Go to Access Tokens: In your settings, find the "Access Tokens" section. Generate a New API Token: Click on the "New Token" or similar button to generate a new HUGGINGFACEHUB_API_KEY.
@@ -149,7 +149,6 @@ This project has been deployed using Vercel and Git pipeline for CI/CD and compl
 |
  \---lib
 qaChain.ts
-rag.server.ts
 redisChat.ts
 upstash.ts
 user.server.ts
