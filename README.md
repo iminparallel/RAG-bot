@@ -69,21 +69,21 @@ This project has been deployed using Vercel and Git pipeline for CI/CD and compl
 ## Guide to populate .env file
 
 1. NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
-2. CLERK_SECRET_KEY=
+2. CLERK_SECRET_KEY= <br/>
    Go to https://dashboard.clerk.com/ , log in and create a new application. With an application name of your choice, enable user authentication via credentials by toggling on Email and allow user authentication via Social Sign-On by toggling on providers such as Google, GitHub and Microsoft.
    Once the application is created in the Clerk dashboard, you will be shown with your application's API keys for Next.js. You will find the first two keys of the .env file here.
 3. UPSTASH_REDIS_REST_URL
 4. UPSTASH_REDIS_REST_TOKEN
 5. UPSTASH_VECTOR_REST_URL
-6. UPSTASH_VECTOR_REST_TOKEN
-   Go to https://console.upstash.com/ and log in,
-   i. create a Redis database and copy the UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN
+6. UPSTASH_VECTOR_REST_TOKEN <br/>
+   Go to https://console.upstash.com/ and log in, <br/>
+   i. create a Redis database and copy the UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN <br/>
    ii. create a Vector database and copy the UPSTASH_VECTOR_REST_URL and UPSTASH_VECTOR_REST_TOKEN, select 768 bge-base-en-v1.5 as the vector embedding standard
-7. HUGGINGFACEHUB_API_KEY
+7. HUGGINGFACEHUB_API_KEY <br/>
    Create a Hugging Face Account: visit the Hugging Face website and sign up for an account. Log In: Once you have an account, log in to Hugging Face. Then visit https://huggingface.co/settings/tokens
    Navigate to Your Profile Settings: Click on your profile icon in the upper right corner and select "Settings". Go to Access Tokens: In your settings, find the "Access Tokens" section. Generate a New API Token: Click on the "New Token" or similar button to generate a new HUGGINGFACEHUB_API_KEY.
    `Allow read and write access to repositories and inference.`
-8. GROQ_API_KEY
+8. GROQ_API_KEY <br/>
    Go to https://console.groq.com/keys to generate the GROQ_API_KEY
 
 ## File Tree
