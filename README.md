@@ -60,7 +60,7 @@ GROQ_API_KEY=
 
 8. run `yarn dev` to run in localhost
 
-9. You will see the port it is launching on on the terminal, and visit the address (if port 3000 is free it will be launched there)
+9. You will see the port it is launching on the terminal, and visit the address (if port 3000 is free it will be launched there)
 
 ## Deployment
 
