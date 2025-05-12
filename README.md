@@ -56,7 +56,7 @@ HUGGINGFACEHUB_API_KEY=
 GROQ_API_KEY=
 ```
 
-7. Run `yarn` to install the dependencies from package.json
+7. Navigate to the root directory and run `yarn` to install the dependencies from package.json
 
 8. run `yarn dev` to run in localhost
 
