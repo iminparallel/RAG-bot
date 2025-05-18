@@ -124,7 +124,7 @@ const Chat = ({ userId }: { userId: string }) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           user_prompt: input,
-          system_prompt: "Answer as helpfully as possible",
+          // system_prompt: "Answer as helpfully as possible",
         }),
       });
 

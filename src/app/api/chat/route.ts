@@ -72,9 +72,9 @@ export async function POST(request: NextRequest) {
     let responseContent = "";
     if (typeof result === "object" && result?.content) {
       responseContent = result.content;
-    } else {
+    } /*else {
       responseContent = result as string;
-    }
+    }*/
 
     if (!sources.length) {
       sources = ["No Sources"];
