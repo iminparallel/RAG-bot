@@ -14,7 +14,7 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
         {/* Left Side - Logo or Title */}
         <Link href="/" className="text-xl font-semibold hover:text-gray-300">
-          evo11ve
+          RAG bot
         </Link>
 
         {/* Right Side - Nav Links / Auth Buttons */}
